@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Zelal ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: pink;
+    font-family: Arial;
+    text-align: center;
+}
+
+#giris {
+    margin-top: 150px;
+}
+
+input {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background: pink;
+    cursor: pointer;
+}
+
+#gizli {
+    display: none;
+}
+
+img {
+    width: 220px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+#sayac {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.kalp {
+    position: absolute;
+    color: red;
+    animation: uc 5s linear infinite;
+}
+
+@keyframes uc {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="giris">
+    <h1>🔒 Gizli Sayfa</h1>
+    <p>Şifreyi gir ❤️</p>
+    <input type="password" id="sifre">
+    <br><br>
+    <button onclick="kontrol()">Giriş</button>
+</div>
+
+<div id="gizli">
+    <h1>Zelal ❤️</h1>
+
+    <p id="mesaj"></p>
+
+    <div id="sayac"></div>
+
+    <img src="foto.jpg" alt="Biz ❤️">
+</div>
+
+<script>
+
+function kontrol() {
+    let sifre = document.getElementById("sifre").value;
+
+    if(sifre === "zelal365") {
+        document.getElementById("giris").style.display = "none";
+        document.getElementById("gizli").style.display = "block";
+        baslat();
+    } else {
+        alert("Yanlış şifre 😢");
+    }
+}
+
+function baslat() {
+
+    let yazilar = [
+        "364 gündür beraberiz...",
+        "Ve şu an...",
+        "00:00 oldu ❤️",
+        "Artık 365 gün...",
+        "Yani tam 1 yıl 💖",
+        "Seninle geçen her gün...",
+        "Hayatımın en güzel günüydü",
+        "İyi ki varsın Zelal ❤️",
+        "Seni çok seviyorum..."
+    ];
+
+    let i = 0;
+    let alan = document.getElementById("mesaj");
+
+    let interval = setInterval(() => {
+        if(i < yazilar.length) {
+            alan.innerHTML = yazilar[i];
+            i++;
+        } else {
+            clearInterval(interval);
+        }
+    }, 2000);
+
+    kalpYagdir();
+    sayacBaslat();
+}
+
+function sayacBaslat() {
+    // İLİŞKİ BAŞLANGIÇ TARİHİNİ BURAYA YAZ
+    let baslangic = new Date("2025-03-24T00:00:00");
+
+    setInterval(() => {
+        let simdi = new Date();
+        let fark = simdi - baslangic;
+
+        let gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+        let saat = Math.floor((fark / (1000 * 60 * 60)) % 24);
+        let dakika = Math.floor((fark / (1000 * 60)) % 60);
+        let saniye = Math.floor((fark / 1000) % 60);
+
+        document.getElementById("sayac").innerHTML =
+            `${gun} gün ${saat} saat ${dakika} dakika ${saniye} saniyedir beraberiz ❤️`;
+    }, 1000);
+}
+
+function kalpYagdir() {
+    setInterval(() => {
+        let kalp = document.createElement("div");
+        kalp.className = "kalp";
+        kalp.innerHTML = "❤️";
+        kalp.style.left = Math.random() * 100 + "vw";
+        kalp.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(kalp);
+
+        setTimeout(() => {
+            kalp.remove();
+        }, 5000);
+
+    }, 300);
+}
+
+</script>
+
+</body>
+</html>
